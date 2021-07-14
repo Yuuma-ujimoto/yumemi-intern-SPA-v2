@@ -23,21 +23,17 @@ export default {
     }
   },
   mounted() {
-    console.log("prefList mounted")
     axios.get("https://opendata.resas-portal.go.jp/api/v1/prefectures", {
       headers: {
         "Content-Type": "application/json;charset='utf8'",
         "X-API-KEY": api.key
       }
     }).then(res => {
-      console.log(res)
       this.api_result = res.data.result
-      console.log(this.api_result)
     })
   },
   methods: {
     onclickCheckBox([pref_id]) {
-      console.log("Call")
       let check_list = this.check_list
       if (check_list.indexOf(pref_id) === -1) {
         this.check_list.push(pref_id)

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input type="checkbox" @click="test">
+    <input type="checkbox" @click="emit">
     {{name}}
   </div>
 
@@ -14,8 +14,7 @@ export default {
     name:String
   },
   methods:{
-    test(){
-      console.log(this.id)
+    emit(){
       this.$emit("pref_test",[this.id])
     }
   }

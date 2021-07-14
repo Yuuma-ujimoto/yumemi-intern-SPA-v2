@@ -2,7 +2,6 @@
   <div id="app">
     <PrefList @ChartDataSet="ChartDataSet"/>
     <Chart :chartData="chartData"></Chart>
-
   </div>
 </template>
 
@@ -35,6 +34,15 @@ export default {
         '香川県', '愛媛県',   '高知県', '福岡県',
         '佐賀県', '長崎県',   '熊本県', '大分県',
         '宮崎県', '鹿児島県', '沖縄県'
+      ],
+      LineColorList:[
+          "#81ecec",
+          "#a29bfe",
+          "#fd79a8",
+          "#fab1a0",
+          "#ffeaa7",
+          "#0984e3",
+          "#ff9ff3"
       ]
     }
   },
@@ -61,7 +69,6 @@ export default {
         loop_count = 0
         population = []
         result_object = {}
-        console.log(res)
         res.data.result.data[0].data.forEach(item2 => {
           if (!(loop_count % 2)) {
             population.push(item2.value)
@@ -71,7 +78,8 @@ export default {
         // pop = [a,b,c,d,e,f,g]
         result_object = {
           label: this.prefNameList[i-1],//近いうちにここに都道府県の名前入れること
-          backgroundColor: '#f87979',
+          // 同じ色だと見にくいので都道府県
+          borderColor:this.LineColorList[i%7],
           data: population,
           fill:false
         }
@@ -86,7 +94,6 @@ export default {
     }
     ,
     updateData(charData) {
-      console.log(charData)
       this.chartData = charData
     }
   }
